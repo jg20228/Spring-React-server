@@ -33,13 +33,13 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		String header = request.getHeader(JwtProperties.HEADER_STRING);
+		System.out.println("header : "+header);
 		if(header == null || !header.startsWith(JwtProperties.TOKEN_PREFIX)) {
 			//헤더가 없어서 아무것도 안함 , Authentication 안만듬
 			chain.doFilter(request, response);
             return;
 		}
 		
-		System.out.println("header : "+header);
 		String token = request.getHeader(JwtProperties.HEADER_STRING)
 				.replace(JwtProperties.TOKEN_PREFIX, ""); //토큰 가져옴
 		
