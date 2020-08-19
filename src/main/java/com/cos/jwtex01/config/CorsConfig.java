@@ -15,10 +15,11 @@ public class CorsConfig {
       CorsConfiguration config = new CorsConfiguration();
       config.setAllowCredentials(true);
       config.addAllowedOrigin("*"); // e.g. http://domain1.com
-      config.addAllowedHeader("*");
-      config.addAllowedMethod("*");
+      config.addAllowedHeader("*"); //??
+      config.addAllowedMethod("*"); //put delete post 허용하는것
 
-      source.registerCorsConfiguration("/api/**", config);
+      //cors
+      source.registerCorsConfiguration("/**", config);
       return new CorsFilter(source);
    }
 

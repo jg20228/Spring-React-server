@@ -17,9 +17,8 @@ import com.cos.jwtex01.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1")
 @RequiredArgsConstructor
-// @CrossOrigin  // CORS 허용 
+// @CrossOrigin  // CORS 허용 -> CorsConfig.java
 public class RestApiController {
 	
 	private final UserRepository userRepository;

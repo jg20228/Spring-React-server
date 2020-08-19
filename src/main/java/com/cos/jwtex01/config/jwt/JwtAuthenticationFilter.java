@@ -31,6 +31,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	
 	// Authentication 객체 만들어서 리턴 => 의존 : AuthenticationManager
 	// 인증 요청시에 실행되는 함수 => /login
+	
+	//인증 시도 될때마다 실행됨
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
