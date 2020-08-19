@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.session.SessionManagementFilter;
 
 import com.cos.jwtex01.config.jwt.JwtAuthenticationFilter;
 import com.cos.jwtex01.config.jwt.JwtAuthorizationFilter;
@@ -23,6 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private UserRepository userRepository;
 	
+	@Autowired
+	private CorsConfig corsConfig;
+	
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -31,6 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+				//corsConfig 설정
+				.addFilterBefore(corsConfig.corsFilter(), SessionManagementFilter.class)
+				.addFilter(corsConfig.corsFilter())
+				//
 				.csrf().disable()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()

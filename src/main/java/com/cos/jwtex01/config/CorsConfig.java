@@ -14,11 +14,11 @@ public class CorsConfig {
       UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
       CorsConfiguration config = new CorsConfiguration();
       config.setAllowCredentials(true);
-      //config.addAllowedOrigin("*"); // e.g. http://domain1.com
-     // config.addAllowedHeader("*"); //??
-      //config.addAllowedMethod("*"); //put delete post 허용하는것
+      config.addAllowedOrigin("*"); // e.g. http://domain1.com
+      config.addAllowedHeader("*"); //??
+      config.addAllowedMethod("*"); //put delete post 허용하는것
       //cors
-      //source.registerCorsConfiguration("/**", config);
+      source.registerCorsConfiguration("/**", config);
       return new CorsFilter(source);
    }
 
